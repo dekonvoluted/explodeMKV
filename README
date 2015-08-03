@@ -1,0 +1,5 @@
+# Explode MKV
+
+This tool accepts an mkv file as an input and extracts each individual component into a separate file. All the extracted files are saved in a directory named after the file.
+
+
