@@ -33,6 +33,9 @@ if __FILE__ == $0
 
     # Process inputs
     ARGV.each do | input |
+        dirName = options[ :output ]
+        dirName += "/" + Time.new.strftime( "#{File.basename( input, ".mkv" )}-%Y%m%dT%H%M" )
+        Dir.mkdir dirName
     end
 end
 
