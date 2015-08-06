@@ -1,5 +1,19 @@
 # Explode MKV
 
-This tool accepts an mkv file as an input and extracts each individual component into a separate file. All the extracted files are saved in a directory named after the file.
+This tool accepts an mkv file as an input and extracts each individual component into a separate file. All the extracted files are saved in a directory named after the file. Alongside each stream file, a YAML document is also written out with some properties.
 
+## Usage
+
+In the simplest case, simply call the `explodeMKV` script with one or more MKV files as inputs. Ensure that the current directory is writable and has enough space.
+
+    $ explodeMKV.rb original-file.mkv
+    $ ls original-file-20150101T0000/
+    0-video
+    0-video.yaml
+    1-audio-eng
+    1-audio-eng.yaml
+    2-subtitles-eng
+    2-subtitles-eng.yaml
+
+If needed, the `-o/--output` option may be used to designate a different path where the directory and its contents should be written to.
 
