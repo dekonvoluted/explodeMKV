@@ -4,6 +4,8 @@
 
 require 'optparse'
 
+require_relative 'mkvfile'
+
 options = { output: File.realpath( Dir.pwd ) }
 
 if __FILE__ == $0
@@ -41,6 +43,10 @@ if __FILE__ == $0
             dirName += "-" + count.to_s
         end
         Dir.mkdir dirName
+
+        MKVFile.new( input ).streams.each do | stream |
+            stream.extract_to dirName
+        end
     end
 end
 
