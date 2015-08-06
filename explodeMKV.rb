@@ -13,6 +13,12 @@ if __FILE__ == $0
     OptionParser.new do | opts |
         opts.banner = "Usage: #{$0} [OPTIONS] [INPUTS]"
 
+        opts.separator ""
+        opts.separator "This tool explodes one or more MKV files into their constituent streams of data. The stream files are placed in a directory named after the original file."
+
+        opts.separator ""
+        opts.separator "Options:"
+
         opts.on( "-o", "--output PATH", "Write output to PATH" ) do | outputPath |
             begin
                 options[ :output ] = File.realpath outputPath
@@ -24,6 +30,10 @@ if __FILE__ == $0
         opts.on( "-h", "--help", "Display this message" ) do
             puts opts
         end
+
+        opts.separator ""
+        opts.separator "Example:"
+        opts.separator "    #{$0} -o /path/to/dir file.mkv"
     end.parse!
 
     # Ensure output directory is writable
