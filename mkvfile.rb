@@ -60,7 +60,7 @@ class MKVFile
 
         allBlocks.each do | block |
             parentFile = filePath
-            number = getValue.call( block, "Track number:" ).split.at( 0 )
+            number = ( getValue.call( block, "Track number:" ).split.at( 0 ).to_i - 1 ).to_s
             name = getValue.call( block, "Name:" )
             type = getValue.call( block, "Track type:" )
             codec = getValue.call( block, "Codec ID:" )
