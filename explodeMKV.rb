@@ -23,6 +23,9 @@ require_relative 'mkvfile'
 options = { output: File.realpath( Dir.pwd ) }
 
 if __FILE__ == $0
+    #Force -h if no arguments are provided
+    ARGV << "-h" if ARGV.empty?
+
     # Parse options
     OptionParser.new do | opts |
         opts.banner = "Usage: #{$0} [OPTIONS] [INPUTS]"
@@ -68,9 +71,8 @@ if __FILE__ == $0
         end
         Dir.mkdir dirName
 
-        MKVFile.new( input ).streams.each do | stream |
-            stream.extract_to dirName
-        end
+        # Find and extract all streams
+        MKVFile.new( input ).explode_to dirName
     end
 end
 
