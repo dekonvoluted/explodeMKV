@@ -33,7 +33,7 @@ class MKVStream
         outputStreamFileName += "-" + @properties[ :language ] unless @properties[ :type ] == "video"
 
         # Extract track
-        IO.popen( "mkvextract tracks #{@properties[ :parentFile]} #{@properties[ :number ]}:#{outputStreamFileName}" ) do | process |
+        IO.popen( "mkvextract tracks #{@properties[ :parentFile ]} #{@properties[ :number ]}:#{outputStreamFileName}" ) do | process |
             output = process.readlines
         end
 
