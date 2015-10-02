@@ -37,6 +37,13 @@ class MKVStream
             output = process.readlines
         end
 
+        # Extract time codes for audio/video tracks
+        if @properties[ :type ] == "video" or @properties[ :type ] == "audio"
+            IO.popen( "mkvextract timecodes_v2 #{@properties[ :parentFile ]} #{@properties[ :number ]}:#{outputStreamFileName}.txt" ) do | process |
+                output = process.readlines
+            end
+        end
+
         # Output other properties
         File.open( outputStreamFileName + ".yaml", "w" ) do | infoFile |
             infoFile.puts @properties.to_yaml
