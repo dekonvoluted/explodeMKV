@@ -66,7 +66,7 @@ class MKVFile
         getValue = lambda do | block, key |
             # Find lines containing key
             selectedLines = block.select { | line | line.match /#{key}/ }
-            return if selectedLines.empty?
+            return String.new if selectedLines.empty?
 
             # Ensure only one line is found
             raise "Too many values for #{key} found." unless selectedLines.size == 1
