@@ -71,9 +71,8 @@ if __FILE__ == $0
         end
         Dir.mkdir dirName
 
-        MKVFile.new( input ).streams.each do | stream |
-            stream.extract_to dirName
-        end
+        # Find and extract all streams
+        MKVFile.new( input ).explode_to dirName
     end
 end
 
