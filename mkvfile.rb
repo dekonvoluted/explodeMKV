@@ -25,7 +25,7 @@ class MKVFile
         @filePath = filePath
 
         # Extract info about the MKV file
-        IO.popen( "mkvinfo #{@filePath}" ) do | process |
+        IO.popen( [ "mkvinfo", @filePath ] ) do | process |
             @fileInfo = process.readlines
         end
 
@@ -111,13 +111,13 @@ class MKVFile
         end
 
         # Extract all tracks
-        IO.popen( "mkvextract tracks " + @filePath + " " + trackOptions.join( " " ) ) do | process |
+        IO.popen( [ "mkvextract", "tracks", @filePath ] + trackOptions ) do | process |
             output = process.readlines
         end
 
         # Extract timecodes
         unless timecodeOptions.empty?
-            IO.popen( "mkvextract timecodes_v2 " + @filePath + " " + timecodeOptions.join( " " ) ) do | process |
+            IO.popen( [ "mkvextract", "timecodes_v2", @filePath ] + timecodeOptions ) do | process |
                 output = process.readlines
             end
         end
